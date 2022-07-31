@@ -12,12 +12,15 @@ class TextCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      description,
-      style: TextStyle(
-        fontSize: size,
-        fontWeight: FontWeight.w400,
-        color: Colors.black,
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: Text(
+        description,
+        style: TextStyle(
+          fontSize: size,
+          fontWeight: FontWeight.w400,
+          color: Colors.black,
+        ),
       ),
     );
   }
