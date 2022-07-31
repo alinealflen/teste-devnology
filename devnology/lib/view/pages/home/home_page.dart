@@ -1,3 +1,5 @@
+import '../../widgets/title_widget.dart';
+
 import '../../widgets/navigation_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -5,7 +7,6 @@ import 'package:get/get.dart';
 import 'widgets/card_categories_widget.dart';
 import 'widgets/card_product_widget.dart';
 import 'widgets/carousel_widget.dart';
-import 'widgets/title_widget.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -50,6 +51,7 @@ class HomePage extends StatelessWidget {
               TitleWidget(
                 title: 'Categories',
                 color: context.theme.primaryColor,
+                size: 30,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -75,6 +77,7 @@ class HomePage extends StatelessWidget {
               TitleWidget(
                 title: 'Latest',
                 color: context.theme.primaryColor,
+                size: 30,
               ),
               CarouselWidget(imageList: imageList),
               Row(

@@ -3,10 +3,12 @@ import 'package:flutter/cupertino.dart';
 class TitleWidget extends StatelessWidget {
   final String title;
   final Color color;
+  final double size;
 
   const TitleWidget({
     required this.title,
     required this.color,
+    required this.size,
     Key? key,
   }) : super(key: key);
 
@@ -14,7 +16,8 @@ class TitleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700, color: color),
+      style:
+          TextStyle(fontSize: size, fontWeight: FontWeight.w700, color: color),
     );
   }
 }
