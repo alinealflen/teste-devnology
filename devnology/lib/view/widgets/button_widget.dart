@@ -14,31 +14,36 @@ class ButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(40),
-      child: Material(
-        color: isShare ? Colors.white : AppTheme.primary,
-        child: InkWell(
-          onTap: () {},
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Row(
-              children: [
-                Text(
-                  text,
-                  style: TextStyle(
-                    color: isShare ? AppTheme.primary : Colors.white,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w900,
+    return SizedBox(
+      width: 140,
+      height: 40,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(40),
+        child: Material(
+          color: isShare ? Colors.white : AppTheme.primary,
+          child: InkWell(
+            onTap: () {},
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    text,
+                    style: TextStyle(
+                      color: isShare ? AppTheme.primary : Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w900,
+                    ),
                   ),
-                ),
-                Icon(
-                  isShare
-                      ? Icons.keyboard_arrow_up
-                      : Icons.keyboard_arrow_right,
-                  color: isShare ? AppTheme.primary : Colors.white,
-                )
-              ],
+                  Icon(
+                    isShare
+                        ? Icons.keyboard_arrow_up
+                        : Icons.keyboard_arrow_right,
+                    color: isShare ? AppTheme.primary : Colors.white,
+                  )
+                ],
+              ),
             ),
           ),
         ),
