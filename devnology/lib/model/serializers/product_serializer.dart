@@ -31,7 +31,7 @@ class ProductSerializer implements Serializer<Product, Map<String, dynamic>> {
   Product fake() => Product(
         id: faker.randomGenerator.integer(999),
         description: faker.lorem.sentence(),
-        images: [
+        images: const [
           'lib/core/assets/images/3000222362_PRD_1500_11.png',
           'lib/core/assets/images/3192783133_1SZ1.png',
           'lib/core/assets/images/ideapad-flex-i5-hero-subseries-br1.png',
