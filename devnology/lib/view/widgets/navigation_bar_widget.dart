@@ -15,28 +15,44 @@ class NavigationBarWidget extends StatelessWidget {
         canvasColor: context.theme.primaryColor,
       ),
       child: BottomNavigationBar(
-        items: const [
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        selectedLabelStyle: TextStyle(
+          color: context.theme.colorScheme.secondary,
+        ),
+        onTap: (index) {
+          if (index == 0) Get.toNamed('/');
+          if (index == 2) Get.toNamed('/cart');
+        },
+        items: [
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home_outlined,
+              color: Get.currentRoute == '/'
+                  ? context.theme.colorScheme.secondary
+                  : Colors.white,
             ),
             label: 'Home',
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(
               Icons.search_rounded,
             ),
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: CartCounterWidget(),
+            icon: CartCounterWidget(
+              iconColor: Get.currentRoute == '/cart'
+                  ? context.theme.colorScheme.secondary
+                  : Colors.white,
+            ),
             label: 'Cart',
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
             label: 'Profile',
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(
               Icons.menu,
             ),
