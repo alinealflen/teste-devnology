@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../../../theme/app_theme.dart';
-import '../../../widgets/text_card_widget.dart';
+import '../../../../model/entities/product_entity.dart';
 import '../../../widgets/title_widget.dart';
+import 'quantity_button_widget.dart';
 
 class ProductCardWidget extends StatelessWidget {
-  final String description;
+  final Product product;
+  final int quantity;
+  final Function(Product) addProduct;
+  final Function(Product) removeProduct;
 
   const ProductCardWidget({
-    required this.description,
+    required this.product,
+    required this.quantity,
+    required this.addProduct,
+    required this.removeProduct,
     Key? key,
   }) : super(key: key);
 
@@ -16,45 +22,51 @@ class ProductCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
           height: 100,
           width: 100,
-          color: Colors.black,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(product.images.first),
+            ),
+          ),
         ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            TextCardWidget(
-              description: description,
-              size: 11,
-            ),
-            const TitleWidget(
-              title: '\$1,519.99',
-              color: Colors.black,
-              size: 14,
-            ),
-            Row(
+        Flexible(
+          child: SizedBox(
+            height: 100,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
-                  height: 13,
-                  width: 13,
-                  color: AppTheme.primary,
+                Text(
+                  product.title,
+                  style: const TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                  ),
                 ),
-                const TitleWidget(
-                  title: '1',
+                TitleWidget(
+                  title: '\$ ${product.price}',
                   color: Colors.black,
                   size: 14,
                 ),
-                Container(
-                  height: 13,
-                  width: 13,
-                  color: AppTheme.primary,
+                Row(
+                  children: [
+                    QuantityButtonWidget.minus(() => removeProduct(product)),
+                    TitleWidget(
+                      title: quantity.toString(),
+                      color: Colors.black,
+                      size: 14,
+                    ),
+                    QuantityButtonWidget.plus(() => addProduct(product)),
+                  ],
                 ),
               ],
             ),
-          ],
+          ),
         ),
       ],
     );
