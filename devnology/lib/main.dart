@@ -1,4 +1,11 @@
+import 'core/bindings/cart_binding.dart';
+import 'core/bindings/home_binding.dart';
+import 'core/bindings/product_binding.dart';
+
+import 'view/pages/cart/cart_page.dart';
+import 'view/pages/checkout/checkout_page.dart';
 import 'view/pages/home/home_page.dart';
+import 'view/pages/product/product_page.dart';
 import 'view/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,7 +22,28 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Devnology',
       theme: AppTheme.theme,
-      home: HomePage(),
+      initialRoute: '/',
+      initialBinding: HomeBinding(),
+      getPages: [
+        GetPage(
+          name: '/',
+          page: () => HomePage(),
+        ),
+        GetPage(
+          name: '/product',
+          page: () => ProductPage(),
+          binding: ProductBinding(),
+        ),
+        GetPage(
+          name: '/cart',
+          page: () => CartPage(),
+          binding: CartBinding(),
+        ),
+        GetPage(
+          name: '/checkout',
+          page: () => const CheckoutPage(),
+        ),
+      ],
     );
   }
 }

@@ -5,10 +5,12 @@ import '../theme/app_theme.dart';
 class ButtonWidget extends StatelessWidget {
   final String text;
   final bool isShare;
+  final Function() onTap;
 
   const ButtonWidget({
     required this.text,
     required this.isShare,
+    required this.onTap,
     Key? key,
   }) : super(key: key);
 
@@ -22,7 +24,7 @@ class ButtonWidget extends StatelessWidget {
         child: Material(
           color: isShare ? Colors.white : AppTheme.primary,
           child: InkWell(
-            onTap: () {},
+            onTap: onTap,
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Row(

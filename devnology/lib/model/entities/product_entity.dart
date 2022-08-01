@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
-
 class Product {
   final int id;
   final String title;
   final String shortTitle;
   final double price;
   final String description;
-  final List<Image> images;
+  final List<String> images;
 
   const Product({
     required this.id,

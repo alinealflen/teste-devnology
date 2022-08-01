@@ -7,9 +7,10 @@ import '../../widgets/navigation_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'cart_controller.dart';
 import 'widgets/product_card_widget.dart';
 
-class CartPage extends StatelessWidget {
+class CartPage extends GetView<CartController> {
   CartPage({Key? key}) : super(key: key);
   final List<String> imageList = [
     'lib/core/assets/images/banner_11.png',
@@ -54,17 +55,20 @@ class CartPage extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: const [
-                    ProductCardWidget(
-                      description: 'Lenovo 15.6 " ',
-                    ),
-                    ProductCardWidget(
-                      description: 'Lenovo 15.6" ',
-                    ),
-                  ],
-                )
+                Obx(() {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: controller.selectedProducts
+                        .toSet()
+                        .map((product) => ProductCardWidget(
+                              product: product,
+                              quantity: controller.productQuantity(product),
+                              addProduct: controller.addToCart,
+                              removeProduct: controller.removeFromCart,
+                            ))
+                        .toList(),
+                  );
+                })
               ],
             ),
           ),
@@ -79,23 +83,28 @@ class CartPage extends StatelessWidget {
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    TitleWidget(
+                  children: [
+                    const TitleWidget(
                       title: 'Total',
                       color: Colors.white,
                       size: 16,
                     ),
-                    TitleWidget(
-                      title: '\$1,5199.99 ',
-                      color: Colors.white,
-                      size: 24,
-                    ),
+                    Obx(() {
+                      return TitleWidget(
+                        title: '\$ ${controller.totalPrice}',
+                        color: Colors.white,
+                        size: 24,
+                      );
+                    }),
                   ],
                 ),
                 const SizedBox(width: 50),
-                const ButtonWidget(
+                ButtonWidget(
                   text: 'CHECKOUT',
                   isShare: false,
+                  onTap: () {
+                    Get.toNamed('/checkout');
+                  },
                 ),
               ],
             ),
