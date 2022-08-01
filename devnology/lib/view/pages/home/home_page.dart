@@ -1,3 +1,4 @@
+import '../../../model/serializers/product_serializer.dart';
 import '../../widgets/title_widget.dart';
 
 import '../../widgets/navigation_bar_widget.dart';
@@ -82,21 +83,15 @@ class HomePage extends StatelessWidget {
               CarouselWidget(imageList: imageList),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   CardProductWidget(
-                    title: 'Lenovo AL545 Modelo',
-                    price: '717,80',
-                    image: 'lib/core/assets/images/3000222362_PRD_1500_11.png',
+                    product: ProductSerializer().fake(),
                   ),
                   CardProductWidget(
-                    title: 'Lenovo AL545 Modelo',
-                    price: '717,80',
-                    image: 'lib/core/assets/images/3000222362_PRD_1500_11.png',
+                    product: ProductSerializer().fake(),
                   ),
                   CardProductWidget(
-                    title: 'Lenovo AL545 Modelo',
-                    price: '717,80',
-                    image: 'lib/core/assets/images/3000222362_PRD_1500_11.png',
+                    product: ProductSerializer().fake(),
                   ),
                 ],
               ),
