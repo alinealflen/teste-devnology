@@ -19,6 +19,7 @@ class ProductBinding implements Bindings {
     Get.put<ProductController>(
       ProductController(
         productViewModel: Get.find<ProductViewModel>(),
+        cartViewModel: Get.find(),
         productId: Get.arguments['productId'],
       ),
     );
