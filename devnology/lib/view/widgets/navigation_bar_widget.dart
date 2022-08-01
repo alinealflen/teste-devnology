@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'cart_counter_widget.dart';
+
 class NavigationBarWidget extends StatelessWidget {
   const NavigationBarWidget({
     Key? key,
@@ -27,7 +29,7 @@ class NavigationBarWidget extends StatelessWidget {
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart_outlined),
+            icon: CartCounterWidget(),
             label: 'Cart',
           ),
           BottomNavigationBarItem(
